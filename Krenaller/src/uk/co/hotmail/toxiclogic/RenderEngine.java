@@ -15,20 +15,24 @@ public class RenderEngine {
 	
 	public static void render(Krenaller krenaller, int width, int height) {
 		
-		switch(ingame) {
-		
-		case 1: renderMainMenu(krenaller, width, height);
-			break;
-		case 2: renderIngame(krenaller, width, height);
-			break;
-		
+		if(ingame == 1) {
+			renderMainMenu(krenaller, width, height);
+		}else {
+			renderIngame(krenaller, width, height);
 		}
+		
+		
 
 		
 	}
 	
 	private static void renderIngame(Krenaller krenaller, int width, int height) {
-		
+		GL11.glBegin(GL11.GL_QUADS);
+			GL11.glVertex2f(300, 300);
+			GL11.glVertex2f(300 + 100, 300);
+			GL11.glVertex2f(300 + 100, 300 + 100);
+			GL11.glVertex2f(300, 300 + 100);
+		GL11.glEnd();
 	}
 
 	private static void renderMainMenu(Krenaller krenaller, int width, int height) {
