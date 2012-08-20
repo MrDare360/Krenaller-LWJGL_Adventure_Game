@@ -1,10 +1,10 @@
 package uk.co.hotmail.toxiclogic;
 
 import org.lwjgl.LWJGLException;
+import static org.lwjgl.opengl.ARBTextureRectangle.*;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.util.glu.GLU;
+import static org.lwjgl.opengl.GL11.*;
 
 public class GameWindow {
 
@@ -25,18 +25,21 @@ public class GameWindow {
 			Display.setResizable(false);
 			Display.create();
 			
-			GL11.glEnable(GL11.GL_BLEND);
-			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-			GL11.glEnable(GL11.GL_TEXTURE_2D);
+			glEnable(GL_BLEND);
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+			glEnable(GL_TEXTURE_RECTANGLE_ARB);
+			glEnable(GL_CULL_FACE);
+	        glCullFace(GL_BACK);
+	        
+			glMatrixMode(GL_PROJECTION);
+			glLoadIdentity();
+			glOrtho(0, 800, 0, 600, 1, -1);
+			glMatrixMode(GL_MODELVIEW);
 			
-			GL11.glMatrixMode(GL11.GL_PROJECTION);
-			GL11.glLoadIdentity();
-			GL11.glOrtho(0, 800, 0, 600, 1, -1);
-			GL11.glMatrixMode(GL11.GL_MODELVIEW);
-			
+			new RenderEngine();
 			
 			while(!Display.isCloseRequested()) {
-				GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT); 
+				glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 				//Render
 				
 				RenderEngine.render(krenallerInstance, width, height);

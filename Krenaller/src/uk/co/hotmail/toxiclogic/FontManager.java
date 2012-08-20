@@ -1,26 +1,19 @@
 package uk.co.hotmail.toxiclogic;
 
+import java.awt.image.BufferedImage;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
-import org.newdawn.slick.opengl.Texture;
-import org.newdawn.slick.opengl.TextureLoader;
-import org.newdawn.slick.util.ResourceLoader;
 
 public class FontManager {
 	
 	/** Font image **/
-	private Texture fontImage;
+	private BufferedImage fontImage;
 	/** Text Positions And Spacing **/
 	public static Vector2f positions = new Vector2f();
 	public static int spacing = 20;
 	
 	public FontManager() {
-		
-		try {
-			fontImage = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/font.png"));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		
 		
 		
@@ -46,7 +39,6 @@ public class FontManager {
 		positions.x = x;
 		positions.y = y;
 		
-		fontImage.bind();
 		
 		for(int i = 0; i < text.length(); i++) {
 			if(getCoordByCharacter(text.charAt(i)) == 404) {
@@ -56,11 +48,11 @@ public class FontManager {
 					GL11.glTexCoord2f(0, 0);
 					GL11.glVertex2f(positions.x, positions.y);
 					GL11.glTexCoord2f(1, 0);
-					GL11.glVertex2f(positions.x + fontImage.getTextureWidth(), positions.y);
+					GL11.glVertex2f(positions.x + fontImage.getWidth(), positions.y);
 					GL11.glTexCoord2f(1, 1);
-					GL11.glVertex2f(positions.x + fontImage.getTextureWidth(), positions.y + fontImage.getTextureHeight());
+					GL11.glVertex2f(positions.x + fontImage.getWidth(), positions.y + fontImage.getHeight());
 					GL11.glTexCoord2f(0, 1);
-					GL11.glVertex2f(positions.x, positions.y + fontImage.getTextureHeight());
+					GL11.glVertex2f(positions.x, positions.y + fontImage.getHeight());
 				GL11.glEnd();
 			}
 			
