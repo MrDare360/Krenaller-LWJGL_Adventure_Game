@@ -42,12 +42,7 @@ public class RenderEngine {
 	}
 	
 	private static void renderIngame(Krenaller krenaller, int width, int height) {
-		glBegin(GL_QUADS);
-			glVertex2f(300, 300);
-			glVertex2f(300 + 100, 300);
-			glVertex2f(300 + 100, 300 + 100);
-			glVertex2f(300, 300 + 100);
-		glEnd();
+		bindAndDraw("grass");
 	}
 
 	private static void renderMainMenu(Krenaller krenaller, int width, int height) {
@@ -81,9 +76,9 @@ public class RenderEngine {
         }
     }
 	
-	public void bindAndDraw(Sprite sprite) {
+	public static void bindAndDraw(String spriteName) {
 		
-		currentSprite = sprite;
+		currentSprite = spriteMap.get(spriteName);
 		
 		glBindTexture(GL_TEXTURE_RECTANGLE_ARB, spritesheet);
 
