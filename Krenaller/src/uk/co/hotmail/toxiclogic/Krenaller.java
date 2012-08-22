@@ -9,10 +9,13 @@ public class Krenaller implements Runnable{
 	
 	public static void main(String[] args) {
 		new Krenaller();
+		
 	}
 	
 	public Krenaller() {
+		
 		new GameWindow(this, 800, 600);
+		
 	}
 
 	public Krenaller getKrenallerInstance() {

@@ -1,7 +1,6 @@
 package uk.co.hotmail.toxiclogic;
 
 import org.lwjgl.LWJGLException;
-import static org.lwjgl.opengl.ARBTextureRectangle.*;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import static org.lwjgl.opengl.GL11.*;
@@ -27,7 +26,7 @@ public class GameWindow {
 			
 			glEnable(GL_BLEND);
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-			glEnable(GL_TEXTURE_RECTANGLE_ARB);
+			glEnable(GL_TEXTURE_2D);
 			glEnable(GL_CULL_FACE);
 	        glCullFace(GL_BACK);
 	        
@@ -36,7 +35,6 @@ public class GameWindow {
 			glOrtho(0, 800, 0, 600, 1, -1);
 			glMatrixMode(GL_MODELVIEW);
 			
-			new RenderEngine();
 			
 			while(!Display.isCloseRequested()) {
 				glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
